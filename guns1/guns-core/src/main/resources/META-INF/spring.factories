@@ -1,0 +1,8 @@
+# AutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.cskaoyan.guns.core.base.controller.GlobalController,\
+com.cskaoyan.guns.core.config.DefaultFastjsonConfig,\
+com.cskaoyan.guns.core.config.MultiDataSourceConfig,\
+com.cskaoyan.guns.core.config.SingleDataSourceConfig,\
+com.cskaoyan.guns.core.config.DefaultProperties,\
+com.cskaoyan.guns.core.config.DefaultWebConfig
