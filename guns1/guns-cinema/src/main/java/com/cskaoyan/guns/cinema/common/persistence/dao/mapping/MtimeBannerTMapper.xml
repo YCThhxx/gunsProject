@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.guns.cinema.common.persistence.dao.MtimeBannerTMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.cskaoyan.guns.cinema.common.persistence.model.MtimeBannerT">
+        <id column="UUID" property="uuid" />
+        <result column="banner_address" property="bannerAddress" />
+        <result column="banner_url" property="bannerUrl" />
+        <result column="is_valid" property="isValid" />
+    </resultMap>
+    <select id="getbannerInfo" resultMap ="BaseResultMap">
+        select UUID,banner_address,banner_url,is_valid
+        from mtime_banner_t
+        where UUID = #{id}
+    </select>
+
+</mapper>

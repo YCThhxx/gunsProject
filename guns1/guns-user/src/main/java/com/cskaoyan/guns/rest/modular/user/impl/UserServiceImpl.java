@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserInfoRespVo getUserInfoByUUID(Integer uuid) {
+    public UserInfoRespVo getUserInfoByUUID(int uuid) {
         UserInfoRespVo userInfoRespVo = new UserInfoRespVo();
         List<MtimeUserT> user = mtimeUserTMapper.selectList(new EntityWrapper<MtimeUserT>().eq("UUID", uuid));
         if (user.size()==1){
