@@ -1,6 +1,6 @@
 rest:
-  auth-open: true #jwt鉴权机制是否开启(true或者false)
-  sign-open: true #签名机制是否开启(true或false)
+  auth-open: false #jwt鉴权机制是否开启(true或者false)
+  sign-open: false #签名机制是否开启(true或false)
 
 jwt:
   header: Authorization   #http请求头所需要的字段
@@ -10,11 +10,11 @@ jwt:
   md5-key: randomKey      #md5加密混淆key
 
 server:
-  port: 80 #项目端口
+  port: 83 #项目端口
 
 mybatis-plus:
-  mapper-locations: classpath*:com/cskaoyan/guns/rest/**/mapping/*.xml
-  typeAliasesPackage: com.cskaoyan.guns.rest.common.persistence.model
+  mapper-locations: classpath*:com/cskaoyan/guns/cinema/**/mapping/*.xml
+  typeAliasesPackage: com.cskaoyan.guns.cinema.common.persistence.model
   global-config:
     id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
     db-column-underline: false
