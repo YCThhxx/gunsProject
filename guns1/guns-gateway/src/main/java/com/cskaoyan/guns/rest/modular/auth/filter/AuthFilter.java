@@ -1,15 +1,18 @@
 package com.cskaoyan.guns.rest.modular.auth.filter;
 
 import com.cskaoyan.guns.core.base.tips.ErrorTip;
+import com.cskaoyan.guns.core.exception.GunsException;
 import com.cskaoyan.guns.core.util.RenderUtil;
 import com.cskaoyan.guns.rest.common.exception.BizExceptionEnum;
 import com.cskaoyan.guns.rest.config.properties.JwtProperties;
 import com.cskaoyan.guns.rest.modular.auth.util.JwtTokenUtil;
 import io.jsonwebtoken.JwtException;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.filter.OncePerRequestFilter;
+import redis.clients.jedis.Jedis;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -31,6 +34,9 @@ public class AuthFilter extends OncePerRequestFilter {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
+    Jedis jedis;
+
+    @Autowired
     private JwtProperties jwtProperties;
 
     @Override
@@ -43,6 +49,12 @@ public class AuthFilter extends OncePerRequestFilter {
         String authToken = null;
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
             authToken = requestHeader.substring(7);
+            String userId = jedis.get(authToken);
+            if(StringUtils.isBlank(userId)){
+                throw new GunsException(BizExceptionEnum.TOKEN_EXPIRED);
+            }else {
+                jedis.expire(authToken,120);
+            }
 
             //验证token是否过期,包含了验证jwt是否正确
             try {

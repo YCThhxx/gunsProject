@@ -12,6 +12,7 @@ import com.cskaoyan.guns.rest.modular.auth.security.impl.Base64SecurityAction;
  * @author fengshuonan
  * @date 2017-08-21 16:34
  */
+//加密test
 public class DecryptTest {
 
     public static void main(String[] args) {

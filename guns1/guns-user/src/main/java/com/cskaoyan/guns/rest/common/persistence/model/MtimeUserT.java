@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 
 /**
@@ -14,7 +16,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author cskaoyan
- * @since 2019-10-12
+ * @since 2019-10-15
  */
 @TableName("mtime_user_t")
 public class MtimeUserT extends Model<MtimeUserT> {
@@ -81,11 +83,13 @@ public class MtimeUserT extends Model<MtimeUserT> {
      * 创建时间
      */
     @TableField("begin_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date beginTime;
     /**
      * 修改时间
      */
     @TableField("update_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
 

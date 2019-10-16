@@ -1,4 +1,3 @@
-
 package com.cskaoyan.guns.cinema.modular.auth.controller.dto;
 
 import java.io.Serializable;

@@ -1,4 +1,3 @@
-
 package com.cskaoyan.guns.cinema.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

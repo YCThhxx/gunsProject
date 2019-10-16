@@ -13,7 +13,7 @@ server:
   port: 83 #项目端口
 
 mybatis-plus:
-  mapper-locations: classpath*:com/cskaoyan/guns/cinema/**/mapping/*.xml
+  mapper-locations: classpath*:com/cskaoyan/guns_rest/cinema/**/mapping/*.xml
   typeAliasesPackage: com.cskaoyan.guns.cinema.common.persistence.model
   global-config:
     id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
@@ -36,7 +36,7 @@ spring:
     server: true
     registry: zookeeper://localhost:2181
   datasource:
-      url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+      url: jdbc:mysql://127.0.0.1:3306/guns_rest?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
       username: root
       password: 123456
       filters: log4j,wall,mergeStat

@@ -20,4 +20,11 @@
         <result column="update_time" property="updateTime" />
     </resultMap>
 
+    <select id="queryIdByUserName" resultType="string">
+        select uuid from mtime_user_t where user_name = #{username}
+    </select>
+    <select id="checkPassword" resultType="java.lang.String">
+        select user_pwd from mtime_user_t where user_name = #{username}
+    </select>
+
 </mapper>

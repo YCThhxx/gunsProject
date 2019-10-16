@@ -1,8 +1,8 @@
 package com.cskaoyan.guns.rest.modular.cinema;
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.cskaoyan.guns.rest.cinema.CinemaService;
-import com.cskaoyan.guns.rest.cinema.vo.CinemaVo;
+import com.cskaoyan.guns.rest.service.CinemaService;
 import com.cskaoyan.guns.rest.vo.cinemaVo.BaseVo;
+import com.cskaoyan.guns.rest.vo.cinemaVo.CinemaVo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/cinema")
 public class CinemaController {
+
     @Reference(interfaceClass = CinemaService.class)
     private  CinemaService cinemaService;
+
     @RequestMapping("getCinemas")
-    public CinemaVo getCinemas(Integer brandId,Integer  hallType,Integer areaId,Integer pageSize,Integer nowPage){
+    public CinemaVo getCinemas(Integer brandId, Integer  hallType, Integer areaId, Integer pageSize, Integer nowPage){
         CinemaVo cinemas = cinemaService.getCinemas(brandId, hallType, areaId, pageSize, nowPage);
         return  cinemas;
     }

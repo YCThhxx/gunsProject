@@ -1,7 +1,7 @@
 package com.cskaoyan.guns.cinema.common.persistence.dao;
 
-import com.cskaoyan.guns.cinema.common.persistence.model.MtimeCinemaT;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.cskaoyan.guns.cinema.common.persistence.model.MtimeCinemaT;
 import org.apache.ibatis.annotations.Param;
 
 /**
