@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.guns.cinema.common.persistence.dao.MtimeFieldTMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.cskaoyan.guns.cinema.common.persistence.model.MtimeFieldT">
+        <id column="UUID" property="uuid" />
+        <result column="cinema_id" property="cinemaId" />
+        <result column="film_id" property="filmId" />
+        <result column="begin_time" property="beginTime" />
+        <result column="end_time" property="endTime" />
+        <result column="hall_id" property="hallId" />
+        <result column="hall_name" property="hallName" />
+        <result column="price" property="price" />
+    </resultMap>
+    <sql id="Base_sql">
+        UUID,cinema_id,film_id,begin_time,end_time,hall_id,hall_name,price
+    </sql>
+    <select id="getFiledInfo" resultMap ="BaseResultMap">
+        select
+        UUID,cinema_id,film_id,begin_time,end_time,hall_id,hall_name,price
+        from mtime_field_t
+        where cinema_id = #{id}
+    </select>
+    <select id="getFilmFields" resultMap = "BaseResultMap">
+        select
+        UUID,cinema_id,film_id,begin_time,end_time,hall_id,hall_name,price
+        from mtime_field_t
+        where cinema_id = #{cinemaId}
+        and  film_id = #{filmId}
+
+    </select>
+    <select id="getFiledByFiledId" resultType="com.cskaoyan.guns.rest.vo.cinemaVo.HallInfo">
+     /*缺少discountPrice和soldSeats*/
+      SELECT f.hall_name as hallName,f.price,f.UUID as hallFieldId,d.seat_address as seatFile
+    from mtime_field_t f
+    LEFT JOIN mtime_hall_dict_t d
+    ON f.hall_id = d.UUID
+    WHERE f.UUID = #{id}
+    </select>
+
+</mapper>
