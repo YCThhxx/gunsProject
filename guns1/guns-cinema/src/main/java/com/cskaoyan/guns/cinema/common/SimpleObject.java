@@ -1,8 +1,4 @@
-<<<<<<< HEAD:guns1/guns-rest/src/main/java/com/cskaoyan/guns/rest/common/SimpleObject.java
-package com.cskaoyan.guns.rest.common;
-=======
 package com.cskaoyan.guns.cinema.common;
->>>>>>> 3f26613456860ca4b6cd31a436c04a1de94b811f:guns1/guns-cinema/src/main/java/com/cskaoyan/guns/cinema/common/SimpleObject.java
 
 /**
  * 测试用的

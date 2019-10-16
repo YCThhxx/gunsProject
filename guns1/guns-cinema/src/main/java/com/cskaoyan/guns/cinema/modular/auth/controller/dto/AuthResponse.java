@@ -1,8 +1,4 @@
-<<<<<<< HEAD:guns1/guns-rest/src/main/java/com/cskaoyan/guns/rest/modular/auth/controller/dto/AuthResponse.java
-package com.cskaoyan.guns.rest.modular.auth.controller.dto;
-=======
 package com.cskaoyan.guns.cinema.modular.auth.controller.dto;
->>>>>>> 3f26613456860ca4b6cd31a436c04a1de94b811f:guns1/guns-cinema/src/main/java/com/cskaoyan/guns/cinema/modular/auth/controller/dto/AuthResponse.java
 
 import java.io.Serializable;
 

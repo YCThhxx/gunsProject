@@ -1,8 +1,4 @@
-<<<<<<< HEAD:guns1/guns-rest/src/main/java/com/cskaoyan/guns/rest/config/properties/JwtProperties.java
-package com.cskaoyan.guns.rest.config.properties;
-=======
 package com.cskaoyan.guns.cinema.config.properties;
->>>>>>> 3f26613456860ca4b6cd31a436c04a1de94b811f:guns1/guns-cinema/src/main/java/com/cskaoyan/guns/cinema/config/properties/JwtProperties.java
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

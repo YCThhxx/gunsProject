@@ -29,6 +29,8 @@ public class UserController {
     @Reference(interfaceClass = UserService.class)
     private UserService userService;
 
+    @Autowired
+    Jedis jedis;
 
     @RequestMapping("check")
     public UserResp check(@RequestBody HashMap map){
@@ -40,6 +42,7 @@ public class UserController {
             return UserResp.resp("用户名不存在",0);
         }
     }
+
     @RequestMapping("register")
     public UserResp login(@RequestBody Register register){
         int i = userService.register(register);
@@ -48,9 +51,6 @@ public class UserController {
         }
         throw new GunsException(BizExceptionEnum.REGISTER_ERROR);
     }
-
-    @Autowired
-    Jedis jedis;
 
     @RequestMapping("getUserInfo")
     public ResponseEntity<?> getUserInfo(HttpServletRequest request){
