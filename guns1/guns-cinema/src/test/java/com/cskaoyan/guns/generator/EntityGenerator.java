@@ -29,7 +29,11 @@ public class EntityGenerator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
+<<<<<<< HEAD
+        gc.setOutputDir("D:\\git-reposity\\cinema\\gunsProject\\guns1\\guns-cinema\\src\\main\\java");//这里写你自己的java目录
+=======
         gc.setOutputDir("G:\\LastProject\\guns1\\guns-cinema\\src\\main\\java");//这里写你自己的java目录
+>>>>>>> bd030506ce60f33a26da086b301cadbe8a97e87b
         gc.setFileOverride(true);//是否覆盖
         gc.setActiveRecord(true);
         gc.setEnableCache(false);// XML 二级缓存
@@ -37,7 +41,7 @@ public class EntityGenerator {
         gc.setBaseColumnList(false);// XML columList
         gc.setAuthor("cskaoyan");
         mpg.setGlobalConfig(gc);
-
+        
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setDbType(DbType.MYSQL);
@@ -51,14 +55,22 @@ public class EntityGenerator {
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
+<<<<<<< HEAD
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/guns?serverTimezone=GMT&characterEncoding=utf8");
+=======
         dsc.setUrl("jdbc:mysql://127.0.0.1:3306/guns_rest?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8");
+>>>>>>> bd030506ce60f33a26da086b301cadbe8a97e87b
         mpg.setDataSource(dsc);
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         //strategy.setTablePrefix(new String[]{"_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
+<<<<<<< HEAD
+        strategy.setInclude(new String[]{"mtime_hall_dict_t"});
+=======
         strategy.setInclude(new String[]{"mtime_banner_t"});
+>>>>>>> bd030506ce60f33a26da086b301cadbe8a97e87b
         mpg.setStrategy(strategy);
 
         // 包配置
