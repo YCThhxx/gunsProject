@@ -2,6 +2,7 @@ package com.cskaoyan.guns.cinema.common.persistence.dao;
 
 import com.cskaoyan.guns.cinema.common.persistence.model.MtimeFieldT;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+
 import com.cskaoyan.guns.rest.vo.cinemaVo.HallInfo;
 import org.apache.ibatis.annotations.Param;
 

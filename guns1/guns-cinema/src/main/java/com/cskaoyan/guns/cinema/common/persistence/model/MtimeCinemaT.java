@@ -19,6 +19,7 @@ import java.io.Serializable;
  */
 
 @Data
+@TableName("mtime_cinema_t")
 public class MtimeCinemaT  implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -29,6 +30,7 @@ public class MtimeCinemaT  implements Serializable{
     @TableId(value = "UUID", type = IdType.AUTO)
     private Integer uuid;
 
+    @TableField("cinema_id")
     private Integer cinemaId;
     /**
      * 影院名称

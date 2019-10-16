@@ -32,6 +32,7 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.stylefeng</groupId>
             <artifactId>guns-core</artifactId>
@@ -42,15 +43,15 @@
             <version>1.2.17</version>
         </dependency>
         <dependency>
-            <groupId>com.stylefeng.guns</groupId>
-            <artifactId>guns-api</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.8</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.stylefeng.guns</groupId>
+            <artifactId>guns-api</artifactId>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
 
@@ -62,6 +63,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

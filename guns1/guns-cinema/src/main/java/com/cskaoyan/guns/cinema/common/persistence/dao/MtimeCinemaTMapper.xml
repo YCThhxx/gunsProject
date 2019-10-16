@@ -17,7 +17,7 @@
     <sql id="Base_sql">
         UUID,cinema_name,cinema_phone,brand_id,area_id,hall_ids,img_address,cinema_address,minimum_price
     </sql>
-    <select id="getCinemaInfo" resultMap="BaseResultMap">
+    <select id="getCinemaInfos" resultMap="BaseResultMap">
         select <include refid="Base_sql"/>
         from mtime_cinema_t
         where UUID = #{id}

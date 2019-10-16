@@ -1,7 +1,7 @@
 package com.cskaoyan.guns.cinema.common.persistence.dao;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.cskaoyan.guns.cinema.common.persistence.model.MtimeCinemaT;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -14,5 +14,5 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface MtimeCinemaTMapper extends BaseMapper<MtimeCinemaT> {
 
-    MtimeCinemaT getCinemaInfo(@Param("id") Integer cinemaId);
+    MtimeCinemaT getCinemaInfos(@Param("id") Integer cinemaId);
 }

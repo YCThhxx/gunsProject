@@ -3,6 +3,7 @@ package com.cskaoyan.guns.cinema.modular.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+
 import com.cskaoyan.guns.cinema.common.persistence.dao.*;
 import com.cskaoyan.guns.cinema.common.persistence.model.*;
 import com.cskaoyan.guns.rest.service.CinemaService;
@@ -22,8 +23,8 @@ public class CinemaServiceImpl implements CinemaService {
     @Autowired
     MtimeHallFilmInfoTMapper mtimeHallFilmInfoTMapper;
 
-    @Autowired
-    MtimeFieldTMapper mtimeFieldTMapper;
+   @Autowired
+   MtimeFieldTMapper mtimeFieldTMapper;
 
     @Autowired
     MtimeBannerTMapper mtimeBannerTMapper;
@@ -156,7 +157,7 @@ public class CinemaServiceImpl implements CinemaService {
     @Override
     public BaseVo getFields(Integer cinemaId) {
 
-        MtimeCinemaT cinemaT = mtimeCinemaTMapper.getCinemaInfo(cinemaId);
+        MtimeCinemaT cinemaT = mtimeCinemaTMapper.getCinemaInfos(cinemaId);
         //设置cinemaInfo
         CinemaInfo cinemaInfo = new CinemaInfo();
         cinemaInfo.setCinemaAdress(cinemaT.getCinemaAddress());
@@ -191,12 +192,12 @@ public class CinemaServiceImpl implements CinemaService {
     public BaseVo getFieldInfo(Integer cinemaId, Integer fieldId) {
         BaseVo<Map> baseVo = new BaseVo<>();
         HashMap<String, Object> map = new HashMap<>();
-        //MtimeCinemaT cinemaInfo = mtimeCinemaTMapper.getCinemaInfo(cinemaId);
-//        Integer brandId = cinemaInfo.getBrandId();
+        MtimeCinemaT cinemaInfo = mtimeCinemaTMapper.getCinemaInfos(cinemaId);
+        Integer brandId = cinemaInfo.getBrandId();
 //        MtimeBannerT bannerT = mtimeBannerTMapper.getbannerInfo(brandId);
 //        baseVo.setImgPre(bannerT.getBannerUrl());
-       // cinemaInfo.setCinemaId(cinemaInfo.getUuid());
-       // map.put("cinemaInfo",cinemaInfo);
+//        cinemaInfo.setCinemaId(cinemaInfo.getUuid());
+        map.put("cinemaInfo",cinemaInfo);
         MtimeHallFilmInfoT filmInfo = mtimeHallFilmInfoTMapper.getFilmInfoByFieldId(fieldId);
         filmInfo.setFilmLanguage(filmInfo.getFilmType());
         map.put("filmInfo",filmInfo);
