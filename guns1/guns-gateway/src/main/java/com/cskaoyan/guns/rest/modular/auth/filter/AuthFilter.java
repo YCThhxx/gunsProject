@@ -49,6 +49,7 @@ public class AuthFilter extends OncePerRequestFilter {
         String authToken = null;
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
             authToken = requestHeader.substring(7);
+<<<<<<< HEAD
             String userId = jedis.get(authToken);
             if(StringUtils.isBlank(userId)){
                 throw new GunsException(BizExceptionEnum.TOKEN_EXPIRED);
@@ -56,6 +57,9 @@ public class AuthFilter extends OncePerRequestFilter {
                 jedis.expire(authToken,120);
             }
 
+=======
+//
+>>>>>>> 3f26613456860ca4b6cd31a436c04a1de94b811f
             //验证token是否过期,包含了验证jwt是否正确
             try {
                 boolean flag = jwtTokenUtil.isTokenExpired(authToken);

@@ -1,6 +1,7 @@
 package com.cskaoyan.guns.rest.common.exception;
 
 import com.cskaoyan.guns.core.exception.ServiceExceptionEnum;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
  * 所有业务异常的枚举
@@ -27,9 +28,14 @@ public enum BizExceptionEnum implements ServiceExceptionEnum {
     SIGN_ERROR(700, "签名验证失败"),
 
     /**
+     * 系统异常
+     */
+    SYSTEM_ERROR(999,"系统出现异常，请联系管理员"),
+    /**
      * 其他
      */
     AUTH_REQUEST_ERROR(400, "账号密码错误");
+
 
     BizExceptionEnum(int code, String message) {
         this.code = code;

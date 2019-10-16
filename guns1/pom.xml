@@ -11,7 +11,7 @@
     <modules>
         <module>guns-admin</module>
         <module>guns-core</module>
-        <module>guns-rest</module>
+<!--        <module>guns-rest</module>-->
         <module>guns-generator</module>
         <module>guns-film</module>
         <module>guns-user</module>
@@ -170,6 +170,12 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.20</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,9 +1,15 @@
 package com.cskaoyan.guns.rest.service;
 
 
+
 import com.cskaoyan.guns.rest.requestVo.Register;
 
+import com.cskaoyan.guns.rest.respVo.userInfo.UserInfo;
+import com.cskaoyan.guns.rest.respVo.userInfo.UserInfoRespVo;
+
+
 public interface UserService {
+
 
 
     //检查用户名是否存在
@@ -14,4 +20,7 @@ public interface UserService {
     String login(String username);
     //检查用户密码
     String checkPassword(String userName);
+    UserInfoRespVo getUserInfoByUUID(int uuid);
+    boolean updateUserInfo(UserInfo userInfo);
+
 }

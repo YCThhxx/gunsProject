@@ -2,8 +2,8 @@ package com.cskaoyan.guns.fastjson;
 
 import com.alibaba.fastjson.JSON;
 import com.cskaoyan.guns.core.util.MD5Util;
-import com.cskaoyan.guns.ciname.common.SimpleObject;
-import com.cskaoyan.guns.ciname.modular.auth.converter.BaseTransferEntity;
+import com.cskaoyan.guns.cinema.common.SimpleObject;
+import com.cskaoyan.guns.cinema.modular.auth.converter.BaseTransferEntity;
 
 /**
  * json测试
