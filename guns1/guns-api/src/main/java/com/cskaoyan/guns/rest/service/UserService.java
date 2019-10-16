@@ -2,10 +2,10 @@ package com.cskaoyan.guns.rest.service;
 
 
 
-import com.cskaoyan.guns.rest.requestVo.Register;
+import com.cskaoyan.guns.rest.vo.requestVo.Register;
 
-import com.cskaoyan.guns.rest.respVo.userInfo.UserInfo;
-import com.cskaoyan.guns.rest.respVo.userInfo.UserInfoRespVo;
+import com.cskaoyan.guns.rest.vo.respVo.userInfo.UserInfo;
+import com.cskaoyan.guns.rest.vo.respVo.userInfo.UserInfoRespVo;
 
 
 public interface UserService {

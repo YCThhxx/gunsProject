@@ -4,21 +4,18 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.cskaoyan.guns.core.exception.GunsException;
 import com.cskaoyan.guns.rest.common.exception.BizExceptionEnum;
 
-import com.cskaoyan.guns.rest.requestVo.Register;
-import com.cskaoyan.guns.rest.respVo.UserResp;
+import com.cskaoyan.guns.rest.vo.requestVo.Register;
+import com.cskaoyan.guns.rest.vo.respVo.UserResp;
 import com.cskaoyan.guns.rest.service.UserService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import com.cskaoyan.guns.rest.respVo.userInfo.UserInfo;
-import com.cskaoyan.guns.rest.respVo.userInfo.UserInfoRespVo;
-import com.cskaoyan.guns.rest.service.UserService;
+import com.cskaoyan.guns.rest.vo.respVo.userInfo.UserInfo;
+import com.cskaoyan.guns.rest.vo.respVo.userInfo.UserInfoRespVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;

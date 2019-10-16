@@ -5,11 +5,10 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 
 import com.cskaoyan.guns.core.util.MD5Util;
-import com.cskaoyan.guns.rest.modular.auth.controller.dto.AuthRequest;
-import com.cskaoyan.guns.rest.requestVo.Register;
+import com.cskaoyan.guns.rest.vo.requestVo.Register;
 
-import com.cskaoyan.guns.rest.respVo.userInfo.UserInfo;
-import com.cskaoyan.guns.rest.respVo.userInfo.UserInfoRespVo;
+import com.cskaoyan.guns.rest.vo.respVo.userInfo.UserInfo;
+import com.cskaoyan.guns.rest.vo.respVo.userInfo.UserInfoRespVo;
 
 import com.cskaoyan.guns.rest.service.UserService;
 import com.cskaoyan.guns.rest.common.persistence.dao.MtimeUserTMapper;
@@ -19,8 +18,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-
-import java.util.HashMap;
 
 import java.util.List;
 

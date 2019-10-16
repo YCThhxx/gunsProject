@@ -1,11 +1,8 @@
 package com.cskaoyan.guns.rest.modular.auth.validator.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-<<<<<<< HEAD
 /*import com.cskaoyan.guns.rest.common.persistence.dao.UserMapper;
 import com.cskaoyan.guns.rest.common.persistence.model.User;*/
-=======
->>>>>>> 3f26613456860ca4b6cd31a436c04a1de94b811f
 import com.cskaoyan.guns.rest.modular.auth.validator.IReqValidator;
 import com.cskaoyan.guns.rest.modular.auth.validator.dto.Credence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +35,6 @@ public class DbValidator implements IReqValidator {
         }
     }*//*
 
-=======
-
 //    @Autowired
 //    UserMapper userMapper;
 
@@ -53,6 +48,5 @@ public class DbValidator implements IReqValidator {
 //        }
         return false;
     }
->>>>>>> 3f26613456860ca4b6cd31a436c04a1de94b811f
 }
 */

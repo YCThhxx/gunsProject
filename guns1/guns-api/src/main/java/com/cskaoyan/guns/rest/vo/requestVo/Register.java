@@ -1,4 +1,4 @@
-package com.cskaoyan.guns.rest.requestVo;
+package com.cskaoyan.guns.rest.vo.requestVo;
 
 import java.io.Serializable;
 
