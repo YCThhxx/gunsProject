@@ -17,6 +17,11 @@ public enum BizExceptionEnum implements ServiceExceptionEnum {
     TOKEN_ERROR(700, "token验证失败"),
 
     /**
+     * 用户注册异常
+     */
+    REGISTER_ERROR(999,"注册异常，请重新注册"),
+
+    /**
      * 签名异常
      */
     SIGN_ERROR(700, "签名验证失败"),

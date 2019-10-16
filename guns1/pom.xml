@@ -160,6 +160,7 @@
                 <artifactId>ehcache-core</artifactId>
                 <version>${ehcache.core.version}</version>
             </dependency>
+            <!--JWT要导入的依赖-->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>

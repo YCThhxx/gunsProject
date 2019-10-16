@@ -1,15 +1,15 @@
-package com.cskaoyan.guns.rest.modular.auth.validator.impl;
+/*package com.cskaoyan.guns.rest.modular.auth.validator.impl;
 
 import com.cskaoyan.guns.rest.modular.auth.validator.IReqValidator;
 import com.cskaoyan.guns.rest.modular.auth.validator.dto.Credence;
 import org.springframework.stereotype.Service;
 
-/**
+*//**
  * 直接验证账号密码是不是admin
  *
  * @author fengshuonan
  * @date 2017-08-23 12:34
- */
+ *//*
 @Service
 public class SimpleValidator implements IReqValidator {
 
@@ -29,4 +29,4 @@ public class SimpleValidator implements IReqValidator {
             return false;
         }
     }
-}
+}*/
