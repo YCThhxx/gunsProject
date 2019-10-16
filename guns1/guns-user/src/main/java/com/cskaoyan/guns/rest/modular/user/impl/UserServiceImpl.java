@@ -1,7 +1,7 @@
 package com.cskaoyan.guns.rest.modular.user.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.cskaoyan.guns.rest.UserService;
+import com.cskaoyan.guns.rest.service.UserService;
 import com.cskaoyan.guns.rest.common.persistence.dao.MtimeUserTMapper;
 import com.cskaoyan.guns.rest.common.persistence.model.MtimeUserT;
 import org.springframework.beans.factory.annotation.Autowired;

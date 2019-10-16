@@ -24,7 +24,6 @@ public class CinemaController {
     public BaseVo getFieldInfo(@RequestParam Integer cinemaId,
                               @RequestParam Integer fieldId){
         BaseVo baseVo = cinemaService.getFieldInfo(cinemaId,fieldId);
-        System.out.println("hah");
         return baseVo;
     }
 
