@@ -28,8 +28,7 @@ public class MtimeCinemaT  implements Serializable{
      */
     @TableId(value = "UUID", type = IdType.AUTO)
     private Integer uuid;
-
-
+    
     /**
      * 影院名称
      */
@@ -71,5 +70,79 @@ public class MtimeCinemaT  implements Serializable{
     @TableField("minimum_price")
     private Integer minimumPrice;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
+    public Integer getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(Integer uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getCinemaName() {
+        return cinemaName;
+    }
+
+    public void setCinemaName(String cinemaName) {
+        this.cinemaName = cinemaName;
+    }
+
+    public String getCinemaPhone() {
+        return cinemaPhone;
+    }
+
+    public void setCinemaPhone(String cinemaPhone) {
+        this.cinemaPhone = cinemaPhone;
+    }
+
+    public Integer getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
+    }
+
+    public Integer getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
+    }
+
+    public String getHallIds() {
+        return hallIds;
+    }
+
+    public void setHallIds(String hallIds) {
+        this.hallIds = hallIds;
+    }
+
+    public String getImgAddress() {
+        return imgAddress;
+    }
+
+    public void setImgAddress(String imgAddress) {
+        this.imgAddress = imgAddress;
+    }
+
+    public String getCinemaAddress() {
+        return cinemaAddress;
+    }
+
+    public void setCinemaAddress(String cinemaAddress) {
+        this.cinemaAddress = cinemaAddress;
+    }
+
+    public Integer getMinimumPrice() {
+        return minimumPrice;
+    }
+
+    public void setMinimumPrice(Integer minimumPrice) {
+        this.minimumPrice = minimumPrice;
+    }
 }

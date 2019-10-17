@@ -47,14 +47,6 @@ public class CinemaVo<T> implements Serializable  {
         this.status = status;
     }
 
-    public Integer getNoePage() {
-        return nowPage;
-    }
-
-    public void setNoePage(Integer noePage) {
-        this.nowPage = noePage;
-    }
-
     public Integer getTotalPage() {
         return totalPage;
     }

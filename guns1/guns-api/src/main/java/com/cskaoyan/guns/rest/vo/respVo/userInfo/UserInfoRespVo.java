@@ -1,4 +1,4 @@
-package com.cskaoyan.guns.rest.respVo.userInfo;
+package com.cskaoyan.guns.rest.vo.respVo.userInfo;
 
 import java.io.Serializable;
 

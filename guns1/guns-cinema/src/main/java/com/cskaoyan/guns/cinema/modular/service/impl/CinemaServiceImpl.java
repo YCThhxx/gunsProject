@@ -39,7 +39,7 @@ public class CinemaServiceImpl implements CinemaService {
     MtimeHallDictTMapper mtimeHallDictTMapper;
 
     @Override
-    public CinemaVo getCinemas(Integer brandId, Integer hallType, Integer districtId, Integer pageSize, Integer nowPage) {
+    public CinemaVo getCinemas(Integer brandId, Integer hallType, Integer areaId, Integer pageSize, Integer nowPage) {
         if (pageSize == null){
             pageSize = 12;
         }
@@ -53,8 +53,8 @@ public class CinemaServiceImpl implements CinemaService {
         if (brandId != 99){
             objectEntityWrapper.eq("brand_id", brandId);
         }
-        if (districtId != 99){
-            objectEntityWrapper.eq("area_id", districtId);
+        if (areaId != 99){
+            objectEntityWrapper.eq("area_id", areaId);
         }
         if (hallType != 99){
             objectEntityWrapper.like("hall_ids", String.valueOf(hallType));
@@ -75,7 +75,7 @@ public class CinemaServiceImpl implements CinemaService {
             getCinemasVolist.add(getCinemasVo);
         }
         CinemaVo ok = CinemaVo.ok(getCinemasVolist);
-        ok.setNoePage(nowPage);
+        ok.setNowPage(nowPage);
         ok.setTotalPage(integer);
         return  ok;
     }
