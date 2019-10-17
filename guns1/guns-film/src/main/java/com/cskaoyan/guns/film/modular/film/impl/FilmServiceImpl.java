@@ -38,6 +38,21 @@ public class FilmServiceImpl implements FilmService {
     @Autowired
     private MtimeFilmActorTMapper mtimeFilmActorTMapper;
 
+    @Autowired
+    MtimeBannerTMapper bannerTMapper;
+
+    @Autowired
+    MtimeFilmTMapper filmTMapper;
+
+    @Autowired
+    MtimeCatDictTMapper catDictTMapper;
+
+    @Autowired
+    MtimeSourceDictTMapper sourceDictTMapper;
+
+    @Autowired
+    MtimeYearDictTMapper yearDictTMapper;
+
     @Override
     public FilmResponseVo getFilms(FilmDetailRequestVo requestVo) {
         FilmResponseVo responseVo = new FilmResponseVo();
@@ -197,4 +212,146 @@ public class FilmServiceImpl implements FilmService {
         return filmDetailVoList;
     }
 
+    @Override
+    public List<BannerVo> getIndexBanners() {
+        EntityWrapper<MtimeBannerT> wrapper = new EntityWrapper();
+        wrapper.eq("is_valid",0);
+        List<MtimeBannerT> mtimeBannerTS = bannerTMapper.selectList(wrapper);
+        List<BannerVo> bannerVos = new ArrayList<>();
+        for (MtimeBannerT mtimeBannerT : mtimeBannerTS) {
+            BannerVo bannerVo = new BannerVo();
+            bannerVo.setBannerId(String.valueOf(mtimeBannerT.getUuid()));
+            bannerVo.setBannerAddress(mtimeBannerT.getBannerAddress());
+            bannerVo.setBannerUrl(mtimeBannerT.getBannerUrl());
+            bannerVos.add(bannerVo);
+        }
+        return bannerVos;
+    }
+
+    public List<FilmInfoVo> beanInsert(List<MtimeFilmT> mtimeFilmTS){
+        List<FilmInfoVo> filmInfoVos = new ArrayList<>();
+        for (MtimeFilmT mtimeFilmT : mtimeFilmTS) {
+            FilmInfoVo filmInfoVo = new FilmInfoVo();
+            filmInfoVo.setBoxNum(mtimeFilmT.getFilmBoxOffice());
+            filmInfoVo.setExpectNum(mtimeFilmT.getFilmPresalenum());
+            filmInfoVo.setFilmCats(mtimeFilmT.getFilmCats());
+            filmInfoVo.setFilmId(String.valueOf(mtimeFilmT.getUuid()));
+            filmInfoVo.setFilmName(mtimeFilmT.getFilmName());
+            filmInfoVo.setFilmScore(mtimeFilmT.getFilmScore());
+            filmInfoVo.setFilmType(mtimeFilmT.getFilmType());
+            filmInfoVo.setImgAddress(mtimeFilmT.getImgAddress());
+            filmInfoVo.setShowTime(mtimeFilmT.getFilmTime());
+            filmInfoVo.setScore(mtimeFilmT.getFilmScore());
+            filmInfoVos.add(filmInfoVo);
+        }
+        return filmInfoVos;
+    }
+
+    @Override
+    public FilmInfoDataVo getIndexHotFilms() {
+        EntityWrapper<MtimeFilmT> wrapper = new EntityWrapper();
+        wrapper.eq("film_status",1);
+        List<MtimeFilmT> mtimeFilmTS = filmTMapper.selectList(wrapper);
+        Integer pageNum = filmTMapper.selectCount(wrapper);
+        FilmInfoDataVo filmInfoDataVo = new FilmInfoDataVo();
+        filmInfoDataVo.setFilmInfo(beanInsert(mtimeFilmTS));
+        filmInfoDataVo.setFilmNum(pageNum);
+        return filmInfoDataVo;
+    }
+
+    @Override
+    public FilmInfoDataVo getIndexSoonFilms() {
+        EntityWrapper<MtimeFilmT> wrapper = new EntityWrapper();
+        wrapper.eq("film_status",2);
+        List<MtimeFilmT> mtimeFilmTS = filmTMapper.selectList(wrapper);
+        Integer pageNum = filmTMapper.selectCount(wrapper);
+        FilmInfoDataVo filmInfoDataVo = new FilmInfoDataVo();
+        filmInfoDataVo.setFilmInfo(beanInsert(mtimeFilmTS));
+        filmInfoDataVo.setFilmNum(pageNum);
+        return filmInfoDataVo;
+    }
+
+    @Override
+    public List<FilmInfoVo> getIndexBoxRanking() {
+        EntityWrapper<MtimeFilmT> wrapper = new EntityWrapper();
+        wrapper.orderBy("film_box_office",false);
+        List<MtimeFilmT> mtimeFilmTS = filmTMapper.selectList(wrapper);
+        List<FilmInfoVo> filmInfoVos = beanInsert(mtimeFilmTS);
+        return filmInfoVos;
+    }
+
+    @Override
+    public List<FilmInfoVo> getIndexExpectRanking() {
+        EntityWrapper<MtimeFilmT> wrapper = new EntityWrapper();
+        wrapper.orderBy("film_preSaleNum",false);
+        List<MtimeFilmT> mtimeFilmTS = filmTMapper.selectList(wrapper);
+        List<FilmInfoVo> filmInfoVos = beanInsert(mtimeFilmTS);
+        return filmInfoVos;
+    }
+
+    @Override
+    public List<FilmInfoVo> getIndexTop100() {
+        EntityWrapper<MtimeFilmT> wrapper = new EntityWrapper();
+        wrapper.orderBy("film_score",false);
+        List<MtimeFilmT> mtimeFilmTS = filmTMapper.selectList(wrapper);
+        List<FilmInfoVo> filmInfoVos = beanInsert(mtimeFilmTS);
+        return filmInfoVos;
+    }
+
+    @Override
+    public List<CatInfoVo> getCatInfo() {
+        List<MtimeCatDictT> mtimeCatDictTS = catDictTMapper.selectList(null);
+        List<CatInfoVo> catInfoVos = new ArrayList<>();
+        for (MtimeCatDictT mtimeCatDictT : mtimeCatDictTS) {
+            CatInfoVo catInfoVo = new CatInfoVo();
+            catInfoVo.setCatId(String.valueOf(mtimeCatDictT.getUuid()));
+            catInfoVo.setCatName(mtimeCatDictT.getShowName());
+            catInfoVo.setActive(false);
+            catInfoVos.add(catInfoVo);
+        }
+        CatInfoVo catInfoVoAll = new CatInfoVo();
+        catInfoVoAll.setCatId("99");
+        catInfoVoAll.setCatName("全部");
+        catInfoVoAll.setActive(true);
+        catInfoVos.add(catInfoVoAll);
+        return catInfoVos;
+    }
+
+    @Override
+    public List<SourceInfoVo> getSourceInfo() {
+        List<MtimeSourceDictT> sourceDictTS = sourceDictTMapper.selectList(null);
+        List<SourceInfoVo> sourceInfoVos = new ArrayList<>();
+        for (MtimeSourceDictT sourceDictT : sourceDictTS) {
+            SourceInfoVo sourceInfoVo = new SourceInfoVo();
+            sourceInfoVo.setSourceId(String.valueOf(sourceDictT.getUuid()));
+            sourceInfoVo.setSourceName(sourceDictT.getShowName());
+            sourceInfoVo.setActive(false);
+            sourceInfoVos.add(sourceInfoVo);
+        }
+        SourceInfoVo sourceInfoVoAll = new SourceInfoVo();
+        sourceInfoVoAll.setSourceId("99");
+        sourceInfoVoAll.setSourceName("全部");
+        sourceInfoVoAll.setActive(true);
+        sourceInfoVos.add(sourceInfoVoAll);
+        return sourceInfoVos;
+    }
+
+    @Override
+    public List<YearInfoVo> getYearInfo() {
+        List<MtimeYearDictT> yearDictTS = yearDictTMapper.selectList(null);
+        List<YearInfoVo> yearInfoVos = new ArrayList<>();
+        for (MtimeYearDictT yearDictT : yearDictTS) {
+            YearInfoVo yearInfoVo = new YearInfoVo();
+            yearInfoVo.setYearId(String.valueOf(yearDictT.getUuid()));
+            yearInfoVo.setYearName(yearDictT.getShowName());
+            yearInfoVo.setActive(false);
+            yearInfoVos.add(yearInfoVo);
+        }
+        YearInfoVo yearInfoVoAll = new YearInfoVo();
+        yearInfoVoAll.setYearId("99");
+        yearInfoVoAll.setYearName("全部");
+        yearInfoVoAll.setActive(true);
+        yearInfoVos.add(yearInfoVoAll);
+        return yearInfoVos;
+    }
 }
