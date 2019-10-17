@@ -62,7 +62,7 @@ public class MtimeFieldT  implements Serializable{
      */
     private Integer price;
 
-    Integer filedId;
+    Integer fieldId;
 
     String language;
 
@@ -134,12 +134,12 @@ public class MtimeFieldT  implements Serializable{
         this.price = price;
     }
 
-    public Integer getFiledId() {
-        return filedId;
+    public Integer getFieldId() {
+        return fieldId;
     }
 
-    public void setFiledId(Integer filedId) {
-        this.filedId = filedId;
+    public void setFieldId(Integer fieldId) {
+        this.fieldId = fieldId;
     }
 
     public String getLanguage() {

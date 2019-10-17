@@ -3,7 +3,6 @@ package com.cskaoyan.guns.cinema.common.persistence.model;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
 
@@ -29,8 +28,7 @@ public class MtimeCinemaT  implements Serializable{
      */
     @TableId(value = "UUID", type = IdType.AUTO)
     private Integer uuid;
-
-   
+    
     /**
      * 影院名称
      */

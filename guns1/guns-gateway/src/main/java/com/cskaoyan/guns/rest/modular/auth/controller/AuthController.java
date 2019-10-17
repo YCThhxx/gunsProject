@@ -9,6 +9,7 @@ import com.cskaoyan.guns.rest.modular.auth.util.JwtTokenUtil;
 import com.cskaoyan.guns.rest.modular.auth.validator.IReqValidator;
 
 import com.cskaoyan.guns.rest.service.UserService;
+import com.cskaoyan.guns.rest.vo.respVo.userInfo.UserInfoRespVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +48,10 @@ public class AuthController {
             String userId = userService.login(credenceName);
             jedis.set(token,userId);
             jedis.expire(token,120);
-            return ResponseEntity.ok(new AuthResponse(token, randomKey));
+            UserInfoRespVo userInfoRespVo = new UserInfoRespVo();
+            userInfoRespVo.setData(new AuthResponse(token,randomKey));
+            userInfoRespVo.setStatus(0);
+            return ResponseEntity.ok(userInfoRespVo);
         } else {
             throw new GunsException(BizExceptionEnum.AUTH_REQUEST_ERROR);
         }

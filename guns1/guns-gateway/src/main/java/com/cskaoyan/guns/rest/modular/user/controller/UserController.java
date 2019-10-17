@@ -4,21 +4,18 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.cskaoyan.guns.core.exception.GunsException;
 import com.cskaoyan.guns.rest.common.exception.BizExceptionEnum;
 
-import com.cskaoyan.guns.rest.requestVo.Register;
-import com.cskaoyan.guns.rest.respVo.UserResp;
+import com.cskaoyan.guns.rest.vo.requestVo.Register;
+import com.cskaoyan.guns.rest.vo.respVo.UserResp;
 import com.cskaoyan.guns.rest.service.UserService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import com.cskaoyan.guns.rest.respVo.userInfo.UserInfo;
-import com.cskaoyan.guns.rest.respVo.userInfo.UserInfoRespVo;
-import com.cskaoyan.guns.rest.service.UserService;
+import com.cskaoyan.guns.rest.vo.respVo.userInfo.UserInfo;
+import com.cskaoyan.guns.rest.vo.respVo.userInfo.UserInfoRespVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,10 +29,12 @@ public class UserController {
     @Reference(interfaceClass = UserService.class)
     private UserService userService;
 
+    @Autowired
+    Jedis jedis;
 
     @RequestMapping("check")
-    public UserResp check(@RequestBody HashMap map){
-        String username = (String) map.get("username");
+    public UserResp check(String username){
+//        String username = (String) map.get("username");
         int check = userService.check(username);
         if(check==1){
             return  UserResp.resp("用户名已经注册",1);
@@ -43,17 +42,15 @@ public class UserController {
             return UserResp.resp("用户名不存在",0);
         }
     }
+
     @RequestMapping("register")
-    public UserResp login(@RequestBody Register register){
+    public UserResp login(Register register){
         int i = userService.register(register);
         if(i==1){
             return UserResp.resp("用户注册成功!",0);
         }
         throw new GunsException(BizExceptionEnum.REGISTER_ERROR);
     }
-
-    @Autowired
-    Jedis jedis;
 
     @RequestMapping("getUserInfo")
     public ResponseEntity<?> getUserInfo(HttpServletRequest request){

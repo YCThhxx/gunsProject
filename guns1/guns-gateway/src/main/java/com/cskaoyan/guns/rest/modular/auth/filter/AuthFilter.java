@@ -39,12 +39,23 @@ public class AuthFilter extends OncePerRequestFilter {
     @Autowired
     private JwtProperties jwtProperties;
 
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        if (request.getServletPath().equals("/" + jwtProperties.getAuthPath())) {
-            chain.doFilter(request, response);
-            return;
+//        if (request.getServletPath().equals("/" + jwtProperties.getAuthPath())) {
+//            chain.doFilter(request, response);
+//            return;
+//        }
+
+        String ignorelUrl = jwtProperties.getIgnorelUrl();
+        String[] strings = ignorelUrl.split(",");
+        for (String split : strings) {
+            if (request.getServletPath().startsWith(split)){
+                chain.doFilter(request,response);
+                return;
+            }
         }
+
         final String requestHeader = request.getHeader(jwtProperties.getHeader());
         String authToken = null;
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
@@ -53,7 +64,7 @@ public class AuthFilter extends OncePerRequestFilter {
             if(StringUtils.isBlank(userId)){
                 throw new GunsException(BizExceptionEnum.TOKEN_EXPIRED);
             }else {
-                jedis.expire(authToken,120);
+                jedis.expire(authToken,3600);
             }
 
             //验证token是否过期,包含了验证jwt是否正确
