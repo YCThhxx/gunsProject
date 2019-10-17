@@ -39,19 +39,19 @@ public class FilmServiceImpl implements FilmService {
     private MtimeFilmActorTMapper mtimeFilmActorTMapper;
 
     @Autowired
-    MtimeBannerTMapper bannerTMapper;
+    private MtimeBannerTMapper bannerTMapper;
 
     @Autowired
-    MtimeFilmTMapper filmTMapper;
+    private MtimeFilmTMapper filmTMapper;
 
     @Autowired
-    MtimeCatDictTMapper catDictTMapper;
+    private MtimeCatDictTMapper catDictTMapper;
 
     @Autowired
-    MtimeSourceDictTMapper sourceDictTMapper;
+    private MtimeSourceDictTMapper sourceDictTMapper;
 
     @Autowired
-    MtimeYearDictTMapper yearDictTMapper;
+    private MtimeYearDictTMapper yearDictTMapper;
 
     @Override
     public FilmResponseVo getFilms(FilmDetailRequestVo requestVo) {
@@ -62,15 +62,17 @@ public class FilmServiceImpl implements FilmService {
 
         EntityWrapper<MtimeFilmT> entityWrapper = new EntityWrapper<>();
         entityWrapper.eq("film_status", requestVo.getShowType());
-        if (requestVo.getYearId() != 99) {
+
+        if (requestVo.getSourceId() != 99) {
             entityWrapper.eq("film_source", requestVo.getSourceId());
         }
-        if (requestVo.getSourceId() != 99) {
-            entityWrapper.eq("film_date", requestVo.getYearId());
+        if (requestVo.getYearId() != 99) {
+            entityWrapper.and().eq("film_date", requestVo.getYearId());
         }
         if (requestVo.getCatId() != 99) {
-            entityWrapper.like("film_cats", requestVo.getCatId() + "");
+            entityWrapper.like("film_cats", "%" + requestVo.getCatId() + "%");
         }
+
         List<MtimeFilmT> filmTList = mtimeFilmTMapper.selectPage(page, entityWrapper);
         List<FilmVo> filmDetailVoList = convert2FilmDetailVo(filmTList);
         responseVo.setData(filmDetailVoList);
@@ -124,6 +126,12 @@ public class FilmServiceImpl implements FilmService {
 
         responseVo.setData(filmDetailVo);
         return responseVo;
+    }
+
+    @Override
+    public String getFilmNameByFilmId(Integer id){
+        String filmName = getFilmById(id).getFilmName();
+        return filmName;
     }
 
     private ActorsVo getActorsVoByFilmId(Integer id, MtimeFilmInfoT filmInfoT) {

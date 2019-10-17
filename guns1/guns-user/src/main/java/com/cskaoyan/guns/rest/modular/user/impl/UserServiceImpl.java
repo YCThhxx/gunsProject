@@ -120,6 +120,12 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public Integer getUuidByUserName(String username) {
+        Integer uuid = Integer.parseInt(mtimeUserTMapper.queryIdByUserName(username));
+        return uuid;
+    }
+
     //获取用户的ID
     @Override
     public String login(String username) {

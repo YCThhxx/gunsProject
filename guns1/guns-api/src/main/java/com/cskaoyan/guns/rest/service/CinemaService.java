@@ -13,4 +13,6 @@ public interface CinemaService {
     BaseVo getFields(Integer cinemaId);
 
     BaseVo getFieldInfo(Integer cinemaId, Integer fieldId);
+
+    String getCinemaNameById(Integer id);
 }

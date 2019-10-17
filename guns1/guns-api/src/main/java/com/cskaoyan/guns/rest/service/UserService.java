@@ -22,5 +22,5 @@ public interface UserService {
     String checkPassword(String userName);
     UserInfoRespVo getUserInfoByUUID(int uuid);
     boolean updateUserInfo(UserInfo userInfo);
-
+    Integer getUuidByUserName(String username);
 }

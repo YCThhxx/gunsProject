@@ -207,4 +207,10 @@ public class CinemaServiceImpl implements CinemaService {
         baseVo.setData(map);
         return baseVo;
     }
+
+    @Override
+    public String getCinemaNameById(Integer id) {
+        MtimeCinemaT mtimeCinemaT = mtimeCinemaTMapper.selectById(id);
+        return mtimeCinemaT.getCinemaName();
+    }
 }

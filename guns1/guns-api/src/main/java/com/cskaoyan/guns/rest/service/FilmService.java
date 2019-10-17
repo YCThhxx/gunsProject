@@ -9,6 +9,8 @@ public interface FilmService {
 
     FilmResponseVo filmDetail(Integer id);
 
+    String getFilmNameByFilmId(Integer id);
+
     List<BannerVo> getIndexBanners();
 
     FilmInfoDataVo getIndexHotFilms();
