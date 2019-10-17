@@ -12,7 +12,7 @@ jwt:
   #ignorel-url: /auth
 
 server:
-  port: 80 #项目端口
+  port: 8080 #项目端口
 
 mybatis-plus:
   mapper-locations: classpath*:com/cskaoyan/guns/rest/**/mapping/*.xml
@@ -34,7 +34,7 @@ spring:
   dubbo:
     registry: zookeeper://localhost:2181
   datasource:
-      url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+      url: jdbc:mysql://127.0.0.1:3306/guns_rest?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
       username: root
       password: 123456
       filters: log4j,wall,mergeStat
