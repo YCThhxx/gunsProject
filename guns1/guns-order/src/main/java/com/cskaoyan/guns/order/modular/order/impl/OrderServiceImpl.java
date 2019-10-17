@@ -46,8 +46,8 @@ public class OrderServiceImpl implements OrderService {
     UserService userService;
 
     @Override
-    public TicketVo getTicketDetail(OrderRequestVo requestVo, String username) throws Exception {
-        Integer userUuid = userService.getUuidByUserName(username);
+    public TicketVo getTicketDetail(OrderRequestVo requestVo, String uuid) throws Exception {
+
         MtimeFieldT fieldT = getFieldById(requestVo.getFieldId());
         Integer cinemaId = fieldT.getCinemaId();
         Integer filmId = fieldT.getFilmId();
@@ -79,7 +79,7 @@ public class OrderServiceImpl implements OrderService {
             orderT.setFilmPrice(fieldT.getPrice());
             orderT.setOrderPrice(orderT.getFilmPrice()*soldSeats.length);
             orderT.setOrderTime(date);
-            orderT.setOrderUser(userUuid);
+            orderT.setOrderUser(Integer.parseInt(uuid));
             orderT.setOrderStatus(0);
             orderTMapper.insert(orderT);
         }else {
@@ -125,7 +125,9 @@ public class OrderServiceImpl implements OrderService {
         return fieldT;
     }
 
-    private String getSeatInfoFromFile(String file) {
+    private String getSeatInfoFromFile(String file1) {
+        String file2 = file1.replace("/","\\");
+        String file = "F:\\wangdao_learning\\microservice\\project\\gunsProject\\guns1\\guns-order\\target\\classes\\" + file2;
         StringBuffer sb = new StringBuffer();
         BufferedReader br = null;
         try {

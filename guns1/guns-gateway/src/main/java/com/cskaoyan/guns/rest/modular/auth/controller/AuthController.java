@@ -47,7 +47,7 @@ public class AuthController {
             final String token = jwtTokenUtil.generateToken(authRequest.getUserName(), randomKey);
             String userId = userService.login(credenceName);
             jedis.set(token,userId);
-            jedis.expire(token,120);
+            jedis.expire(token,36000);
             UserInfoRespVo userInfoRespVo = new UserInfoRespVo();
             userInfoRespVo.setData(new AuthResponse(token,randomKey));
             userInfoRespVo.setStatus(0);

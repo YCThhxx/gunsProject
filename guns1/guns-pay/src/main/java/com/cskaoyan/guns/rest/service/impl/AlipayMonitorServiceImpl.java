@@ -9,8 +9,6 @@ import com.cskaoyan.guns.rest.config.Configs;
 import com.cskaoyan.guns.rest.model.builder.AlipayHeartbeatSynRequestBuilder;
 import com.cskaoyan.guns.rest.service.AlipayMonitorService;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Component;
-import sun.jvmstat.monitor.AbstractMonitor;
 
 /**
  * Created by liuyangkly on 15/10/22.

@@ -64,13 +64,13 @@ public class FilmServiceImpl implements FilmService {
         entityWrapper.eq("film_status", requestVo.getShowType());
 
         if (requestVo.getSourceId() != 99) {
-            entityWrapper.eq("film_source", requestVo.getSourceId());
+            entityWrapper.eq("film_area", requestVo.getSourceId());
         }
         if (requestVo.getYearId() != 99) {
             entityWrapper.and().eq("film_date", requestVo.getYearId());
         }
         if (requestVo.getCatId() != 99) {
-            entityWrapper.like("film_cats", "%" + requestVo.getCatId() + "%");
+            entityWrapper.like("film_cats", requestVo.getCatId() + "");
         }
 
         List<MtimeFilmT> filmTList = mtimeFilmTMapper.selectPage(page, entityWrapper);
