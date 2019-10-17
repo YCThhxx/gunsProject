@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class BaseVo<T> implements Serializable {
     T data;
 
-    String imgPre;
+    String imgPre = "http://img.meetingshop.cn/";
 
     String msg;
 
