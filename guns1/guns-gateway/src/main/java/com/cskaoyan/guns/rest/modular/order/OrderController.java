@@ -2,9 +2,8 @@ package com.cskaoyan.guns.rest.modular.order;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.cskaoyan.guns.rest.service.OrderService;
-import com.cskaoyan.guns.rest.vo.orderVo.OrderRequestVo;
-import com.cskaoyan.guns.rest.vo.orderVo.OrderResponseVo;
-import com.cskaoyan.guns.rest.vo.orderVo.TicketVo;
+import com.cskaoyan.guns.rest.vo.filmVo.BaseFailRespVo;
+import com.cskaoyan.guns.rest.vo.orderVo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping("/order")
@@ -39,5 +39,21 @@ public class OrderController {
             responseVo.setMsg("该订单不存在");
             return responseVo;
         }
+    }
+
+    @PostMapping("getOrderInfo")
+    public Object getOrderInfo(HttpServletRequest request) {
+        String header = request.getHeader("Authorization");
+        String token = header.substring(7);
+        String uuid = jedis.get(token);
+        if (uuid == null) {
+            return BaseFailRespVo.fail(2, "你的登录信息已过期，请重新登陆!");
+        }
+        List<OrderInfoVo> orderInfo = orderService.getOrderInfo(Integer.parseInt(uuid),
+                Integer.parseInt(request.getParameter("nowPage")),Integer.parseInt(request.getParameter("pageSize")));
+        if (orderInfo.size() == 0) {
+            return BaseFailRespVo.fail(1, "订单列表为空哦！~");
+        }
+        return new OrderRespVo(orderInfo,0,"");
     }
 }

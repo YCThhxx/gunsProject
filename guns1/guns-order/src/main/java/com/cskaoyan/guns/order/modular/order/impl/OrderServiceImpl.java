@@ -2,6 +2,8 @@ package com.cskaoyan.guns.order.modular.order.impl;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.cskaoyan.guns.order.persistence.dao.MoocOrderTMapper;
 import com.cskaoyan.guns.order.persistence.dao.MtimeFieldTMapper;
 import com.cskaoyan.guns.order.persistence.dao.MtimeHallDictTMapper;
@@ -12,6 +14,7 @@ import com.cskaoyan.guns.rest.service.CinemaService;
 import com.cskaoyan.guns.rest.service.FilmService;
 import com.cskaoyan.guns.rest.service.OrderService;
 import com.cskaoyan.guns.rest.service.UserService;
+import com.cskaoyan.guns.rest.vo.orderVo.OrderInfoVo;
 import com.cskaoyan.guns.rest.vo.orderVo.OrderRequestVo;
 import com.cskaoyan.guns.rest.vo.orderVo.TicketVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +22,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 @Component
@@ -44,6 +46,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Reference(interfaceClass = UserService.class)
     UserService userService;
+
+    @Autowired
+    MoocOrderTMapper moocOrderTMapper;
+
 
     @Override
     public TicketVo getTicketDetail(OrderRequestVo requestVo, String uuid) throws Exception {
@@ -147,5 +153,45 @@ public class OrderServiceImpl implements OrderService {
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public List<OrderInfoVo> getOrderInfo(int userId, int nowPage, int pageSize) {
+        EntityWrapper wrapper = new EntityWrapper();
+        wrapper.eq("order_user",userId).orderBy("order_time",false);
+        Page<MoocOrderT> page = new Page<>();
+        page.setSize(pageSize);
+        page.setCurrent(nowPage);
+        List<MoocOrderT> moocOrderTS = moocOrderTMapper.selectPage(page,wrapper);
+        List<OrderInfoVo> orderInfoVos = new ArrayList<>();
+        String[] strings = new String[]{"待支付","已支付","已关闭"};
+        SimpleDateFormat dateFormat = new SimpleDateFormat("M月d日 HH:mm");
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        for (MoocOrderT moocOrderT : moocOrderTS) {
+            OrderInfoVo orderInfoVo = new OrderInfoVo();
+            orderInfoVo.setCinemaName(cinemaService.getCinemaNameById(moocOrderT.getCinemaId()));
+            orderInfoVo.setFieldTime(dateFormat.format(moocOrderT.getOrderTime()));
+            orderInfoVo.setFilmName(filmService.getFilmNameByFilmId(moocOrderT.getFilmId()));
+            orderInfoVo.setOrderId(moocOrderT.getUuid());
+            orderInfoVo.setOrderPrice(String.valueOf(moocOrderT.getOrderPrice()));
+            orderInfoVo.setSeatsName(moocOrderT.getSeatsName());
+            orderInfoVo.setOrderStatus(strings[moocOrderT.getOrderStatus()]);
+            orderInfoVo.setOrderTimestamp(String.valueOf(moocOrderT.getOrderTime().getTime()).substring(0,10));
+            orderInfoVos.add(orderInfoVo);
+        }
+        return orderInfoVos;
+    }
+
+    @Override
+    public String getSoldSeatsByFieldId(Integer fieldId) {
+        EntityWrapper wrapper = new EntityWrapper();
+        wrapper.eq("field_id",fieldId);
+        List<MoocOrderT> moocOrderTS = moocOrderTMapper.selectList(wrapper);
+        String string = new String();
+        for (MoocOrderT moocOrderT : moocOrderTS) {
+            string += (moocOrderT.getSeatsIds()+",");
+        }
+        string = string.substring(0,string.length()-1);
+        return string;
     }
 }
