@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class GetCinemasVo implements Serializable {
     private  int uuid;
     private  String cinemaName;
-    private  String address;
+    private  String cinemaAddress;
     private  int minimumPrice;
 
     @Override
@@ -13,7 +13,7 @@ public class GetCinemasVo implements Serializable {
         return "GetCinemasVo{" +
                 "uuid=" + uuid +
                 ", cinemaName='" + cinemaName + '\'' +
-                ", address='" + address + '\'' +
+                ", address='" + cinemaAddress + '\'' +
                 ", minimumPrice=" + minimumPrice +
                 '}';
     }
@@ -21,10 +21,10 @@ public class GetCinemasVo implements Serializable {
     public GetCinemasVo() {
     }
 
-    public GetCinemasVo(int uuid, String cinemaName, String address, int minimumPrice) {
+    public GetCinemasVo(int uuid, String cinemaName, String cinemaAddress, int minimumPrice) {
         this.uuid = uuid;
         this.cinemaName = cinemaName;
-        this.address = address;
+        this.cinemaAddress = cinemaAddress;
         this.minimumPrice = minimumPrice;
     }
 
@@ -44,12 +44,12 @@ public class GetCinemasVo implements Serializable {
         this.cinemaName = cinemaName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getCinemaAddress() {
+        return cinemaAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCinemaAddress(String cinemaAddress) {
+        this.cinemaAddress = cinemaAddress;
     }
 
     public int getMinimumPrice() {
