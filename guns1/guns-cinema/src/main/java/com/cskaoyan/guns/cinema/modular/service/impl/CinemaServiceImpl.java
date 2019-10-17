@@ -172,6 +172,9 @@ public class CinemaServiceImpl implements CinemaService {
             Integer filmId = mtimeFieldT.getFilmId();
             MtimeHallFilmInfoT hallInfo = mtimeHallFilmInfoTMapper.getFilmInfo(filmId);
             List<MtimeFieldT> filmFields = mtimeFieldTMapper.getFilmFields(cinemaId,filmId);
+            for (MtimeFieldT filmField : filmFields) {
+                filmField.setFieldId(filmField.getUuid());
+            }
             hallInfo.setFilmFields(filmFields);
             filmList.add(hallInfo);
         }
