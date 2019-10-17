@@ -31,6 +31,10 @@ public enum BizExceptionEnum implements ServiceExceptionEnum {
      * 系统异常
      */
     SYSTEM_ERROR(999,"系统出现异常，请联系管理员"),
+    
+    
+    BUSSNISS_ERROR(1, "影院信息查询失败"),
+   
     /**
      * 其他
      */

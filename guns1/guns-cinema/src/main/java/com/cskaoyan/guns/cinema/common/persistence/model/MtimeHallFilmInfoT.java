@@ -64,5 +64,83 @@ public class MtimeHallFilmInfoT implements Serializable {
 
     private String filmType;
 
+    public Integer getUuid() {
+        return uuid;
+    }
 
+    public void setUuid(Integer uuid) {
+        this.uuid = uuid;
+    }
+
+    public Integer getFilmId() {
+        return filmId;
+    }
+
+    public void setFilmId(Integer filmId) {
+        this.filmId = filmId;
+    }
+
+    public String getFilmName() {
+        return filmName;
+    }
+
+    public void setFilmName(String filmName) {
+        this.filmName = filmName;
+    }
+
+    public String getFilmLength() {
+        return filmLength;
+    }
+
+    public void setFilmLength(String filmLength) {
+        this.filmLength = filmLength;
+    }
+
+    public String getFilmCats() {
+        return filmCats;
+    }
+
+    public void setFilmCats(String filmCats) {
+        this.filmCats = filmCats;
+    }
+
+    public String getFilmLanguage() {
+        return filmLanguage;
+    }
+
+    public void setFilmLanguage(String filmLanguage) {
+        this.filmLanguage = filmLanguage;
+    }
+
+    public String getActors() {
+        return actors;
+    }
+
+    public void setActors(String actors) {
+        this.actors = actors;
+    }
+
+    public List<MtimeFieldT> getFilmFields() {
+        return filmFields;
+    }
+
+    public void setFilmFields(List<MtimeFieldT> filmFields) {
+        this.filmFields = filmFields;
+    }
+
+    public String getImgAddress() {
+        return imgAddress;
+    }
+
+    public void setImgAddress(String imgAddress) {
+        this.imgAddress = imgAddress;
+    }
+
+    public String getFilmType() {
+        return filmType;
+    }
+
+    public void setFilmType(String filmType) {
+        this.filmType = filmType;
+    }
 }
