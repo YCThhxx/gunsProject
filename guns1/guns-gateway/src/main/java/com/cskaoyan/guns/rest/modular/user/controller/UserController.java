@@ -94,15 +94,15 @@ public class UserController {
         String token = header.substring(7);
         UserInfoRespVo userInfoRespVo = new UserInfoRespVo();
         //删除token
-        Long del = jedis.del(token);
-        if (del == 1) {
-            userInfoRespVo.setMsg("退出成功");
-            userInfoRespVo.setStatus(0);
-            return ResponseEntity.ok(userInfoRespVo);
-        }else {
-            userInfoRespVo.setMsg("退出失败，用户尚未登陆");
-            userInfoRespVo.setStatus(1);
-            return ResponseEntity.ok(userInfoRespVo);
+        UserInfoRespVo<Object> respVo = new UserInfoRespVo<>();
+        try {
+            jedis.del(token);
+            respVo.setStatus(0);
+            return ResponseEntity.ok(respVo);
+        } catch (Exception e) {
+            respVo.setStatus(1);
+            respVo.setMsg("退出失败！");
+            return ResponseEntity.ok(respVo);
         }
 
     }

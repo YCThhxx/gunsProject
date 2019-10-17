@@ -9,7 +9,6 @@ import com.cskaoyan.guns.rest.vo.respVo.PayInfo;
 import com.cskaoyan.guns.rest.vo.respVo.PayRespVo;
 import com.cskaoyan.guns.rest.vo.respVo.userInfo.UserInfoRespVo;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

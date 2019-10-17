@@ -62,23 +62,25 @@ public class AuthFilter extends OncePerRequestFilter {
             authToken = requestHeader.substring(7);
             String userId = jedis.get(authToken);
             if(StringUtils.isBlank(userId)){
-                throw new GunsException(BizExceptionEnum.TOKEN_EXPIRED);
+                RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_EXPIRED.getCode(), BizExceptionEnum.TOKEN_EXPIRED.getMessage()));
+                return;
+//                throw new GunsException(BizExceptionEnum.TOKEN_EXPIRED);
             }else {
                 jedis.expire(authToken,3600);
             }
 
-            //验证token是否过期,包含了验证jwt是否正确
-            try {
-                boolean flag = jwtTokenUtil.isTokenExpired(authToken);
-                if (flag) {
-                    RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_EXPIRED.getCode(), BizExceptionEnum.TOKEN_EXPIRED.getMessage()));
-                    return;
-                }
-            } catch (JwtException e) {
-                //有异常就是token解析失败
-                RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
-                return;
-            }
+//            //验证token是否过期,包含了验证jwt是否正确
+//            try {
+//                boolean flag = jwtTokenUtil.isTokenExpired(authToken);
+//                if (flag) {
+//                    RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_EXPIRED.getCode(), BizExceptionEnum.TOKEN_EXPIRED.getMessage()));
+//                    return;
+//                }
+//            } catch (JwtException e) {
+//                //有异常就是token解析失败
+//                RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
+//                return;
+//            }
         } else {
             //header没有带Bearer字段
             RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
