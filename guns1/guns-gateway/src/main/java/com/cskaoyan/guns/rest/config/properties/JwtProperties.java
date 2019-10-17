@@ -27,6 +27,8 @@ public class JwtProperties {
 
     private String salt = "wwk999";
 
+    private String ignorelUrl;
+
     public String getSalt() {
         return salt;
     }
@@ -77,5 +79,13 @@ public class JwtProperties {
 
     public void setMd5Key(String md5Key) {
         this.md5Key = md5Key;
+    }
+
+    public String getIgnorelUrl() {
+        return ignorelUrl;
+    }
+
+    public void setIgnorelUrl(String ignorelUrl) {
+        this.ignorelUrl = ignorelUrl;
     }
 }

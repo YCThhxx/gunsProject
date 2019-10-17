@@ -1,5 +1,7 @@
 package com.cskaoyan.guns.rest.modular.cinema;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.cskaoyan.guns.core.exception.GunsException;
+import com.cskaoyan.guns.rest.common.exception.BizExceptionEnum;
 import com.cskaoyan.guns.rest.service.CinemaService;
 import com.cskaoyan.guns.rest.vo.cinemaVo.BaseVo;
 import com.cskaoyan.guns.rest.vo.cinemaVo.CinemaVo;
@@ -15,13 +17,30 @@ public class CinemaController {
     private  CinemaService cinemaService;
 
     @RequestMapping("getCinemas")
-    public CinemaVo getCinemas(Integer brandId, Integer  hallType, Integer areaId, Integer pageSize, Integer nowPage){
-        CinemaVo cinemas = cinemaService.getCinemas(brandId, hallType, areaId, pageSize, nowPage);
+    public CinemaVo getCinemas(Integer brandId, Integer  hallType, Integer areaId, Integer pageSize, Integer nowPage,Integer halltypeId){
+        int hallId = 0;
+        if (hallType != null){
+            hallId = hallType;
+        }
+        if (halltypeId != null){
+            hallId = halltypeId;
+        }
+        CinemaVo cinemas;
+        try {
+            cinemas = cinemaService.getCinemas(brandId, hallId, areaId, pageSize, nowPage);
+        }catch (Exception e){
+            throw new GunsException(BizExceptionEnum.BUSSNISS_ERROR);
+        }
         return  cinemas;
     }
     @RequestMapping("getCondition")
     public  CinemaVo getCondition(Integer brandId,Integer  hallType,Integer areaId){
-        CinemaVo cinemas = cinemaService.getCondition(brandId, hallType, areaId);
+        CinemaVo cinemas;
+        try {
+            cinemas = cinemaService.getCondition(brandId, hallType, areaId);
+        }catch (Exception e){
+            throw new GunsException(BizExceptionEnum.BUSSNISS_ERROR);
+        }
         return  cinemas;
     }
 
