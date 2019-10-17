@@ -14,5 +14,5 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface MtimeCinemaTMapper extends BaseMapper<MtimeCinemaT> {
 
-    MtimeCinemaT getCinemaInfo(@Param("id") Integer cinemaId);
+    MtimeCinemaT getCinemaInfos(@Param("id") Integer cinemaId);
 }

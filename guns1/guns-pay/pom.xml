@@ -47,6 +47,7 @@
         <artifactId>guns-api</artifactId>
         <version>0.0.1</version>
     </dependency>
+
     <dependency>
         <groupId>com.alipay.sdk</groupId>
         <artifactId>alipay-sdk-java</artifactId>
@@ -103,3 +104,4 @@
 </dependencies>
 
 </project>
+

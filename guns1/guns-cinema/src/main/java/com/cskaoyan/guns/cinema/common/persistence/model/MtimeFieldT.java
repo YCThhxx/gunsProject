@@ -62,7 +62,7 @@ public class MtimeFieldT  implements Serializable{
      */
     private Integer price;
 
-    Integer filedId;
+    Integer fieldId;
 
     String language;
 

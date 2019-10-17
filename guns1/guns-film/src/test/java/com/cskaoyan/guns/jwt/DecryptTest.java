@@ -2,9 +2,9 @@ package com.cskaoyan.guns.jwt;
 
 import com.alibaba.fastjson.JSON;
 import com.cskaoyan.guns.core.util.MD5Util;
-import com.cskaoyan.guns.rest.common.SimpleObject;
-import com.cskaoyan.guns.rest.modular.auth.converter.BaseTransferEntity;
-import com.cskaoyan.guns.rest.modular.auth.security.impl.Base64SecurityAction;
+import com.cskaoyan.guns.film.common.SimpleObject;
+import com.cskaoyan.guns.film.modular.auth.converter.BaseTransferEntity;
+import com.cskaoyan.guns.film.modular.auth.security.impl.Base64SecurityAction;
 
 /**
  * jwt测试

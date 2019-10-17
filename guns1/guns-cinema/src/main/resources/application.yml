@@ -5,15 +5,15 @@ rest:
 jwt:
   header: Authorization   #http请求头所需要的字段
   secret: mySecret        #jwt秘钥
-  expiration: 604800      #7天 单位:秒
-  auth-path: auth         #认证请求的路径
-  md5-key: randomKey      #md5加密混淆key
+  expiration: 604800      #认证请求的路径
+  md5-key: randomKey      #7天 单位:秒
+  auth-path: auth           #md5加密混淆key
 
 server:
   port: 83 #项目端口
 
 mybatis-plus:
-  mapper-locations: classpath*:com/cskaoyan/guns/cinema/**/mapping/*.xml
+  mapper-locations: classpath*:com/cskaoyan/guns_rest/cinema/**/mapping/*.xml
   typeAliasesPackage: com.cskaoyan.guns.cinema.common.persistence.model
   global-config:
     id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)

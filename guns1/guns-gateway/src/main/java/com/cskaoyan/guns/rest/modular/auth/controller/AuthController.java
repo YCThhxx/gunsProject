@@ -34,7 +34,7 @@ public class AuthController {
     @Reference(interfaceClass = UserService.class)
     UserService userService;
 
-    @Resource(name = "loginValidator")
+    @Resource(name = "simpleValidator")
     IReqValidator reqValidator;
 
     @RequestMapping(value = "${jwt.auth-path}")

@@ -6,7 +6,6 @@ import com.cskaoyan.guns.core.util.MD5Util;
 import com.cskaoyan.guns.rest.modular.auth.validator.IReqValidator;
 import com.cskaoyan.guns.rest.modular.auth.validator.dto.Credence;
 import com.cskaoyan.guns.rest.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**

@@ -1,5 +1,3 @@
-package com.cskaoyan.guns.rest.modular.auth.validator.impl;
-
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 /*import com.cskaoyan.guns.rest.common.persistence.dao.UserMapper;
 import com.cskaoyan.guns.rest.common.persistence.model.User;*/
