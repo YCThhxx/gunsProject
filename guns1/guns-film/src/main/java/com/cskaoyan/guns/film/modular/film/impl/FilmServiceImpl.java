@@ -63,10 +63,10 @@ public class FilmServiceImpl implements FilmService {
         EntityWrapper<MtimeFilmT> entityWrapper = new EntityWrapper<>();
         entityWrapper.eq("film_status", requestVo.getShowType());
         if (requestVo.getYearId() != 99) {
-            entityWrapper.eq("film_source", requestVo.getSourceId());
+            entityWrapper.eq("film_date", requestVo.getYearId());
         }
         if (requestVo.getSourceId() != 99) {
-            entityWrapper.eq("film_date", requestVo.getYearId());
+            entityWrapper.eq("film_area", requestVo.getSourceId());
         }
         if (requestVo.getCatId() != 99) {
             entityWrapper.like("film_cats", requestVo.getCatId() + "");
