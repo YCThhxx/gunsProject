@@ -156,7 +156,6 @@ public class CinemaServiceImpl implements CinemaService {
 
     @Override
     public BaseVo getFields(Integer cinemaId) {
-
         MtimeCinemaT cinemaT = mtimeCinemaTMapper.getCinemaInfos(cinemaId);
         //设置cinemaInfo
         CinemaInfo cinemaInfo = new CinemaInfo();
@@ -164,13 +163,18 @@ public class CinemaServiceImpl implements CinemaService {
         cinemaInfo.setCinemaId(cinemaId);
         cinemaInfo.setCinemaName(cinemaT.getCinemaName());
         cinemaInfo.setCinemaPhone(cinemaT.getCinemaPhone());
-        cinemaInfo.setImgUrl(cinemaT.getImgAddress());
+        String imgAddress1 = cinemaT.getImgAddress();
+        String[] split = imgAddress1.split("/");
+        cinemaInfo.setImgUrl(split[split.length-1]);
         //这个电影院有哪些电影
         List<MtimeFieldT> fieldT = mtimeFieldTMapper.getFiledInfo(cinemaId);
         Set<MtimeHallFilmInfoT> filmList = new HashSet<MtimeHallFilmInfoT>();
         for (MtimeFieldT mtimeFieldT : fieldT) {
             Integer filmId = mtimeFieldT.getFilmId();
             MtimeHallFilmInfoT hallInfo = mtimeHallFilmInfoTMapper.getFilmInfo(filmId);
+            String imgAddress = hallInfo.getImgAddress();
+            String[] split1 = imgAddress.split("/");
+            hallInfo.setImgAddress(split1[split1.length-1]);
             List<MtimeFieldT> filmFields = mtimeFieldTMapper.getFilmFields(cinemaId,filmId);
             for (MtimeFieldT filmField : filmFields) {
                 filmField.setFieldId(filmField.getUuid());
@@ -196,13 +200,19 @@ public class CinemaServiceImpl implements CinemaService {
         BaseVo<Map> baseVo = new BaseVo<>();
         HashMap<String, Object> map = new HashMap<>();
         MtimeCinemaT cinemaInfo = mtimeCinemaTMapper.getCinemaInfos(cinemaId);
-        Integer brandId = cinemaInfo.getBrandId();
+        String imgAddress = cinemaInfo.getImgAddress();
+        String[] split = imgAddress.split("/");
+        cinemaInfo.setImgAddress(split[split.length-1]);
+//        Integer brandId = cinemaInfo.getBrandId();
 //        MtimeBannerT bannerT = mtimeBannerTMapper.getbannerInfo(brandId);
 //        baseVo.setImgPre(bannerT.getBannerUrl());
 //        cinemaInfo.setCinemaId(cinemaInfo.getUuid());
         map.put("cinemaInfo",cinemaInfo);
         MtimeHallFilmInfoT filmInfo = mtimeHallFilmInfoTMapper.getFilmInfoByFieldId(fieldId);
         filmInfo.setFilmLanguage(filmInfo.getFilmType());
+        String imgAddress1 = filmInfo.getImgAddress();
+        String[] split1 = imgAddress1.split("/");
+        filmInfo.setImgAddress(split1[split1.length-1]);
         map.put("filmInfo",filmInfo);
         HallInfo hallInfo = mtimeFieldTMapper.getFiledByFiledId(fieldId);
         map.put("hallInfo",hallInfo);

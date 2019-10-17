@@ -7,6 +7,25 @@ public class CinemaVo<T> implements Serializable  {
     private  Integer nowPage;
     private  Integer totalPage;
     private  String msg;
+    String imgPre = "http://img.meetingshop.cn/";
+
+
+    public Integer getNowPage() {
+        return nowPage;
+    }
+
+    public void setNowPage(Integer nowPage) {
+        this.nowPage = nowPage;
+    }
+
+    public String getImgPre() {
+        return imgPre;
+    }
+
+    public void setImgPre(String imgPre) {
+        this.imgPre = imgPre;
+    }
+
     T data;
 
     public Integer getStatus() {
@@ -26,14 +45,6 @@ public class CinemaVo<T> implements Serializable  {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public Integer getNowPage() {
-        return nowPage;
-    }
-
-    public void setNowPage(Integer nowPage) {
-        this.nowPage = nowPage;
     }
 
     public Integer getTotalPage() {

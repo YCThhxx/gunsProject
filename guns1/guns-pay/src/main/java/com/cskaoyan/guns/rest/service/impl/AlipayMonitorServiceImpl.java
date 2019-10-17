@@ -1,6 +1,6 @@
 package com.cskaoyan.guns.rest.service.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
+
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.MonitorHeartbeatSynRequest;
