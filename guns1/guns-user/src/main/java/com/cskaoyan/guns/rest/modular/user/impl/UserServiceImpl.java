@@ -109,7 +109,10 @@ public class UserServiceImpl implements UserService {
         mtimeUserT.setAddress(userInfo.getAddress());
         mtimeUserT.setHeadUrl(userInfo.getHeadAddress());
         mtimeUserT.setUpdateTime(new Date());
-        Integer integer = mtimeUserTMapper.updateAllColumnById(mtimeUserT);
+//        Integer integer = mtimeUserTMapper.updateAllColumnById(mtimeUserT);
+        EntityWrapper<MtimeUserT> wrapper = new EntityWrapper<>();
+        wrapper.eq("UUID",userInfo.getUuid());
+        Integer integer = mtimeUserTMapper.update(mtimeUserT, wrapper);
         if (integer==1){
             return true;
         }else {

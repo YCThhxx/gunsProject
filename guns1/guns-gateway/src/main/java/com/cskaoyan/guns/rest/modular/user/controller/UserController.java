@@ -33,8 +33,8 @@ public class UserController {
     Jedis jedis;
 
     @RequestMapping("check")
-    public UserResp check(@RequestBody HashMap map){
-        String username = (String) map.get("username");
+    public UserResp check(String username){
+//        String username = (String) map.get("username");
         int check = userService.check(username);
         if(check==1){
             return  UserResp.resp("用户名已经注册",1);
@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @RequestMapping("register")
-    public UserResp login(@RequestBody Register register){
+    public UserResp login(Register register){
         int i = userService.register(register);
         if(i==1){
             return UserResp.resp("用户注册成功!",0);
