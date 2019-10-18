@@ -13,6 +13,8 @@ public class PayServiceImpl implements PayService {
     @Autowired
     AliPayMain aliPayMain;
 
+
+
     @Override
     public Double getOrderById(String orderId) {
         //查询订单详情的语句
@@ -22,7 +24,13 @@ public class PayServiceImpl implements PayService {
     @Override
     public boolean getPayInfo(String orderId) {
         //查询订单详情语句
-        boolean flag = aliPayMain.test_trade_precreate();
+        //?把订单信息写入方法里面
+        Double orderPrice = null;
+        Double filmPrice = null;
+        Integer cinemaId = 1;
+        Integer filmId = 1;
+        Integer num = 1;
+        boolean flag = aliPayMain.test_trade_precreate(orderId,orderPrice,filmPrice,cinemaId,filmId,num);
         return flag;
     }
 
