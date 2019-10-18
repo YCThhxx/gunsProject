@@ -289,10 +289,10 @@ public class AliPayMain {
     }
 
     // 测试当面付2.0查询订单
-    public void test_trade_query() {
+    public Integer test_trade_query(String orderId) {
         // (必填) 商户订单号，通过此商户订单号查询当面付的交易状态
-        String outTradeNo = "tradepay14817938139942440181";
-
+//        String outTradeNo = "tradepay14817938139942440181";
+            String outTradeNo = orderId;
         // 创建查询请求builder，设置请求参数
         AlipayTradeQueryRequestBuilder builder = new AlipayTradeQueryRequestBuilder()
             .setOutTradeNo(outTradeNo);
@@ -311,19 +311,19 @@ public class AliPayMain {
                         log.info(bill.getFundChannel() + ":" + bill.getAmount());
                     }
                 }
-                break;
+                return 1;
 
             case FAILED:
                 log.error("查询返回该订单支付失败或被关闭!!!");
-                break;
+                return 2;
 
             case UNKNOWN:
                 log.error("系统异常，订单支付状态未知!!!");
-                break;
+                return 2;
 
             default:
                 log.error("不支持的交易状态，交易返回异常!!!");
-                break;
+                return 2;
         }
     }
 
@@ -371,7 +371,7 @@ public class AliPayMain {
     }
 
     // 测试当面付2.0生成支付二维码
-    public boolean test_trade_precreate(String orderId,Double orderPrice, Double filmPrice,Integer cinemaId,Integer filmId, Integer num) {
+    public boolean test_trade_precreate(String orderId,String filmName,String cinemaName,String fieldTime,String orderPrice,String orderTimestamp,String seatsName) {
         // (必填) 商户网站订单系统中唯一订单号，64个字符以内，只能包含字母、数字、下划线，
         // 需保证商户系统端不能重复，建议通过数据库sequence生成，
 //        String outTradeNo = "tradeprecreate" + System.currentTimeMillis()
@@ -385,7 +385,7 @@ public class AliPayMain {
         // (必填) 订单总金额，单位为元，不能超过1亿元
         // 如果同时传入了【打折金额】,【不可打折金额】,【订单总金额】三者,则必须满足如下条件:【订单总金额】=【打折金额】+【不可打折金额】
 //        String totalAmount = "100";
-        String totalAmount = orderPrice.toString();
+        String totalAmount = orderPrice;
 
         // (可选) 订单不可打折金额，可以配合商家平台配置折扣活动，如果酒水不参与打折，则将对应金额填写至此字段
         // 如果该值未传入,但传入了【订单总金额】,【打折金额】,则该值默认为【订单总金额】-【打折金额】
@@ -397,14 +397,14 @@ public class AliPayMain {
 
         // 订单描述，可以对交易或商品进行一个详细地描述，比如填写"购买商品2件共15.00元"
 //        String body = "电影票共100元";
-        String body = "电影票共"+orderPrice+"元";
+        String body = "在"+fieldTime+"开场的电影《"+filmName+"》共"+orderPrice+"元,座位为"+seatsName;
 
         // 商户操作员编号，添加此参数可以为商户操作员做销售统计
         String operatorId = "test_operator_id";
 
         // (必填) 商户门店编号，通过门店号和商家后台可以配置精准到门店的折扣信息，详询支付宝技术支持
 //        String storeId = "test_store_id";
-        String storeId = cinemaId.toString();
+        String storeId = cinemaName;
 
         // 业务扩展参数，目前可添加由支付宝分配的系统商编号(通过setSysServiceProviderId方法)，详情请咨询支付宝技术支持
         ExtendParams extendParams = new ExtendParams();
@@ -416,9 +416,9 @@ public class AliPayMain {
         // 商品明细列表，需填写购买商品详细信息，
         List<GoodsDetail> goodsDetailList = new ArrayList<GoodsDetail>();
         // 创建一个商品信息，参数含义分别为商品id（使用国标）、名称、单价（单位为分）、数量，如果需要添加商品类别，详见GoodsDetail
-        GoodsDetail goods1 = GoodsDetail.newInstance(filmId.toString(), filmId.toString()+"电影", filmPrice.longValue(), num);
+//        GoodsDetail goods1 = GoodsDetail.newInstance("xxx" ,filmName, 1000,1);
         // 创建好一个商品后添加至商品明细列表
-        goodsDetailList.add(goods1);
+//        goodsDetailList.add(goods1);
 
         // 继续创建并添加第一条商品信息，用户购买的产品为“黑人牙刷”，单价为5.00元，购买了两件
 //        GoodsDetail goods2 = GoodsDetail.newInstance("goods_id002", "xxx牙刷", 500, 2);

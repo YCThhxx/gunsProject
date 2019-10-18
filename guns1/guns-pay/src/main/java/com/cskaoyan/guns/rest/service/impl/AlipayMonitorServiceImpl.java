@@ -1,6 +1,6 @@
 package com.cskaoyan.guns.rest.service.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
+
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.MonitorHeartbeatSynRequest;
@@ -9,7 +9,6 @@ import com.cskaoyan.guns.rest.config.Configs;
 import com.cskaoyan.guns.rest.model.builder.AlipayHeartbeatSynRequestBuilder;
 import com.cskaoyan.guns.rest.service.AlipayMonitorService;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by liuyangkly on 15/10/22.

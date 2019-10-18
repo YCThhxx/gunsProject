@@ -22,13 +22,14 @@ public class PayController {
 
 
     @RequestMapping("getPayInfo")
-    public ResponseEntity getPayInfo(@Param("orderId") String orderId){
+    public ResponseEntity<?> getPayInfo(@Param("orderId") String orderId){
         boolean flag = false;
         try {
             flag = payService.getPayInfo(orderId);
         } catch (Exception e) {
             throw new GunsException(BizExceptionEnum.SYSTEM_ERROR);
         }
+//        boolean flag = payService.getPayInfo(orderId);
         UserInfoRespVo userInfoRespVo = new UserInfoRespVo();
         if (flag){
             PayInfo payInfo = new PayInfo();
@@ -47,12 +48,13 @@ public class PayController {
     @RequestMapping("getPayResult")
     public ResponseEntity getPayResult(@Param("orderId") String orderId,@Param("tryNums") Integer tryNums){
         UserInfoRespVo userInfoRespVo = new UserInfoRespVo();
-        Integer status = payService.queryOrderStatusById(orderId);
-        if (tryNums>3){
+        if (tryNums>5){
             userInfoRespVo.setMsg("订单支付失败，请稍后重试");
             userInfoRespVo.setStatus(1);
             return ResponseEntity.ok(userInfoRespVo);
-        }else if(status==1) {
+        }
+        Integer status = payService.checkOrderStatusAndChange(orderId);
+        if(status==1){
             PayRespVo payRespVo = new PayRespVo();
             payRespVo.setOrderId(orderId);
             payRespVo.setOrderMsg("支付成功");
@@ -65,5 +67,4 @@ public class PayController {
         userInfoRespVo.setStatus(1);
         return ResponseEntity.ok(userInfoRespVo);
     }
-
 }

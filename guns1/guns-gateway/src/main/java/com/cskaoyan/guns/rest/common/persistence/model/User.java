@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author cskaoyan
@@ -18,7 +18,6 @@ public class User extends Model<User> {
 
 	private Long id;
 	private String userName;
-
 
 	public Long getId() {
 		return id;

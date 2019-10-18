@@ -5,11 +5,13 @@ import com.cskaoyan.guns.rest.common.exception.BizExceptionEnum;
 import com.cskaoyan.guns.rest.service.CinemaService;
 import com.cskaoyan.guns.rest.vo.cinemaVo.BaseVo;
 import com.cskaoyan.guns.rest.vo.cinemaVo.CinemaVo;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Api(description = "电影模块请求")
 @RequestMapping("/cinema")
 public class CinemaController {
 
