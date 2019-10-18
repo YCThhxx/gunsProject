@@ -133,7 +133,8 @@ public class OrderServiceImpl implements OrderService {
 
     private String getSeatInfoFromFile(String file1) {
         String file2 = file1.replace("/","\\");
-        String file = "F:\\wangdao_learning\\microservice\\project\\gunsProject\\guns1\\guns-order\\target\\classes\\" + file2;
+        String file = "guns-order\\src\\main\\resources\\" + file2;
+        System.out.println(file);
         StringBuffer sb = new StringBuffer();
         BufferedReader br = null;
         try {
